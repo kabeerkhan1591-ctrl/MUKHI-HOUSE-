@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mukhi House — Hyderabad, Sindh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#121212;        /* deep black base */
+    --ink-2:#1d1d1d;
+    --parchment:#E8C79B;  /* warm skin-toned parchment */
+    --parchment-lt:#F7E7D0;
+    --madder:#8B4A2A;     /* rich earthy brown */
+    --madder-dk:#6F3A21;
+    --brass:#C79A57;      /* muted brass accent */
+    --charcoal:#0D0D0D;
+    --line: rgba(13,13,13,0.16);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--parchment-lt);
+    color:var(--charcoal);
+    font-family:'Newsreader', serif;
+    font-size:17px;
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .eyebrow{
+    font-family:'Work Sans', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--madder);
+    font-weight:600;
+  }
+  a{color:inherit;}
+  img{display:block; max-width:100%;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ===== Ajrak motif (signature element) ===== */
+  .ajrak-strip{
+    height:22px;
+    width:100%;
+    background:
+      repeating-linear-gradient(45deg, var(--brass) 0 6px, transparent 6px 12px) top/100% 11px no-repeat,
+      repeating-linear-gradient(-45deg, var(--madder) 0 6px, transparent 6px 12px) bottom/100% 11px no-repeat,
+      var(--ink);
+  }
+  .ajrak-corner{
+    position:absolute; width:34px; height:34px; pointer-events:none;
+  }
+  .ajrak-corner svg{width:100%; height:100%;}
+
+  /* ===== Nav ===== */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 40px;
+    background:linear-gradient(90deg, rgba(13,13,13,0.96) 0%, rgba(13,13,13,0.9) 60%, rgba(232,199,155,0.18) 100%);
+    border-bottom:1px solid rgba(232,199,155,0.18);
+    transition:background .35s ease, padding .35s ease, box-shadow .35s ease;
+  }
+  nav.scrolled{
+    background:linear-gradient(90deg, rgba(232,199,155,0.98) 0%, rgba(247,231,208,0.96) 100%);
+    backdrop-filter:blur(10px);
+    padding:12px 40px;
+    box-shadow:0 1px 0 var(--line);
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;
+    color:var(--parchment-lt); letter-spacing:0.01em;
+    display:flex; flex-direction:column; line-height:1.1;
+  }
+  nav.scrolled .brand{color:var(--ink);}
+  .brand small{
+    font-family:'Work Sans', sans-serif; font-size:0.6rem; letter-spacing:0.2em;
+    color:var(--brass); font-weight:500; margin-top:3px;
+  }
+  .nav-links{
+    display:flex; gap:8px; align-items:center; font-family:'Work Sans', sans-serif; font-size:0.82rem; letter-spacing:0.04em;
+    padding:8px; border-radius:999px; background:rgba(232,199,155,0.12); border:1px solid rgba(232,199,155,0.18);
+    backdrop-filter:blur(8px);
+  }
+  nav.scrolled .nav-links{background:rgba(13,13,13,0.06); border-color:rgba(13,13,13,0.12);}
+  .nav-links a{
+    color:var(--parchment-lt); text-decoration:none; opacity:0.9; position:relative; padding:8px 12px; border-radius:999px;
+  }
+  nav.scrolled .nav-links a{color:var(--ink);}
+  .nav-links a:not(.btn-book):after{
+    content:""; position:absolute; left:12px; bottom:6px; width:0; height:1px; background:var(--madder);
+    transition:width .25s ease;
+  }
+  .nav-links a:not(.btn-book):hover{background:rgba(255,255,255,0.08);}
+  nav.scrolled .nav-links a:not(.btn-book):hover{background:rgba(162,62,46,0.08);}
+  .nav-links a:not(.btn-book):hover:after{width:calc(100% - 24px);}
+  .btn-book{
+    background:var(--madder); color:var(--parchment-lt) !important; padding:9px 18px;
+    border-radius:999px; text-decoration:none; font-weight:600; opacity:1 !important;
+    border:1px solid var(--madder); box-shadow:0 10px 24px rgba(162,62,46,0.24);
+  }
+  .btn-book:hover{background:var(--madder-dk); border-color:var(--madder-dk); transform:translateY(-1px);}
+  .nav-toggle{display:none; background:transparent; border:0; color:var(--parchment-lt); padding:6px; cursor:pointer;}
+  nav.scrolled .nav-toggle{color:var(--ink);}
+  .nav-toggle span{display:block; width:22px; height:2px; background:currentColor; margin:4px 0; border-radius:10px;}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative; height:100vh; min-height:640px;
+    display:flex; align-items:flex-start; /* keep hero panel below the top nav */
+    padding-top:32px;
+    background:var(--ink);
+  }
+  .hero img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%;
+    opacity:0.62;
+  }
+  .hero:before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(13,13,13,0.2) 0%, rgba(13,13,13,0.48) 55%, rgba(13,13,13,0.92) 100%);
+  }
+  .hero-content{position:relative; z-index:2; padding:calc(40px + 2vw) clamp(20px,5vw,40px) clamp(40px,8vw,80px); width:100%; display:flex; justify-content:flex-start;}
+  .hero-panel{
+    max-width:760px;  padding:clamp(28px,3vw,40px); border-radius:24px; background:rgba(7,10,18,0.46);
+    border:1px solid rgba(247,242,228,0.16); box-shadow:0 24px 60px rgba(0,0,0,0.28); backdrop-filter:blur(10px);
+  }
+  .hero-content .eyebrow{color:var(--brass); margin-bottom:14px; display:inline-block;}
+  .hero-content h1{
+    color:var(--parchment-lt); font-size:clamp(2.6rem, 6vw, 5rem);
+    max-width:760px; margin:0 0 18px; font-weight:500; line-height:1.02;
+  }
+  .hero-content h1 em{font-style:italic; color:var(--brass); font-weight:400;}
+  .hero-sub{
+    color:rgba(247,242,228,0.9); max-width:620px; font-size:1.05rem; margin-bottom:30px; line-height:1.75;
+  }
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    font-family:'Work Sans', sans-serif; font-size:0.85rem; letter-spacing:0.03em; font-weight:600;
+    padding:15px 28px; text-decoration:none; border-radius:999px; display:inline-block; transition:all .2s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--madder); color:var(--parchment-lt); border:1px solid var(--madder);}
+  .btn-primary:hover{background:var(--madder-dk); border-color:var(--madder-dk);}
+  .btn-ghost{border:1px solid rgba(247,242,228,0.55); color:var(--parchment-lt);}
+  .btn-ghost:hover{background:rgba(247,242,228,0.12); border-color:var(--parchment-lt);}
+
+  /* ===== Section shared ===== */
+  section{padding:110px 0;}
+  .section-head{max-width:640px; margin-bottom:56px;}
+  .section-head h2{font-size:clamp(2rem, 3.4vw, 2.8rem); margin-top:10px;}
+
+  /* ===== About ===== */
+  .about{background:var(--parchment-lt);}
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
+  .about-copy p{margin-bottom:18px; color:#3a3025;}
+  .about-copy .pull{
+    font-family:'Fraunces', serif; font-style:italic; font-size:1.3rem; color:var(--ink);
+    border-left:2px solid var(--madder); padding-left:20px; margin:28px 0;
+  }
+  .about-img-wrap{position:relative; padding:14px;}
+  .about-img-wrap img{width:100%; height:520px; object-fit:cover;}
+  .facts{
+    display:grid; grid-template-columns:1fr 1fr; gap:24px 32px; margin-top:36px;
+    font-family:'Work Sans', sans-serif;
+  }
+  .fact-num{font-family:'Fraunces', serif; font-size:1.7rem; color:var(--madder); font-weight:500;}
+  .fact-label{font-size:0.78rem; letter-spacing:0.05em; color:#5c4f3d; margin-top:2px;}
+
+  /* ===== Gallery ===== */
+  .gallery{background:var(--ink); color:var(--parchment-lt);}
+  .gallery .section-head h2{color:var(--parchment-lt);}
+  .gallery .eyebrow{color:var(--brass);}
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(6, 1fr); grid-auto-rows:120px; gap:14px;
+  }
+  .g-item{position:relative; overflow:hidden; grid-column:span 2; grid-row:span 2;}
+  .g-item.wide{grid-column:span 3;}
+  .g-item.tall{grid-row:span 3;}
+  .g-item img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease;}
+  .g-item:hover img{transform:scale(1.07);}
+  .g-item .cap{
+    position:absolute; left:0; right:0; bottom:0; padding:14px 16px 10px;
+    background:linear-gradient(0deg, rgba(30,42,74,0.9), transparent);
+    font-family:'Work Sans', sans-serif; font-size:0.74rem; letter-spacing:0.03em; color:var(--parchment-lt);
+    opacity:0; transform:translateY(6px); transition:all .3s ease;
+  }
+  .g-item:hover .cap{opacity:1; transform:translateY(0);}
+
+  /* ===== Virtual tour ===== */
+  .tour{background:var(--parchment);}
+  .tour-frame{
+    position:relative; border:1px solid var(--line); background:var(--charcoal);
+    aspect-ratio:16/8.2; width:100%; overflow:hidden;
+  }
+  .tour-frame iframe{width:100%; height:100%; border:0;}
+  .tour-fallback{
+    font-family:'Work Sans', sans-serif; font-size:0.82rem; color:#5c4f3d; margin-top:14px;
+  }
+  .tour-fallback a{color:var(--madder); font-weight:600; text-decoration:none; border-bottom:1px solid var(--madder);}
+
+  /* ===== Tickets ===== */
+  .tickets{background:var(--parchment-lt);}
+  .ticket-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px;}
+  .price-card{
+    background:var(--ink); color:var(--parchment-lt); padding:40px 34px; position:relative; align-self:start;
+  }
+  .price-card .eyebrow{color:var(--brass);}
+  .price-card .amount{font-family:'Fraunces', serif; font-size:3.4rem; margin:14px 0 4px; font-weight:500;}
+  .price-card .amount sup{font-size:1.3rem; top:-1.2em; color:var(--brass);}
+  .price-card .per{font-family:'Work Sans', sans-serif; font-size:0.78rem; color:rgba(247,242,228,0.65); letter-spacing:0.04em; margin-bottom:26px;}
+  .price-card ul{list-style:none; font-family:'Work Sans', sans-serif; font-size:0.86rem; line-height:2.1; color:rgba(247,242,228,0.9);}
+  .price-card li:before{content:"— "; color:var(--brass);}
+  .price-card .hours{
+    margin-top:26px; padding-top:22px; border-top:1px solid rgba(247,242,228,0.18);
+    font-family:'Work Sans', sans-serif; font-size:0.82rem; color:rgba(247,242,228,0.75);
+  }
+
+  form.booking{background:var(--parchment); padding:38px; border:1px solid var(--line);}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;}
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field.full{grid-column:1/-1;}
+  label{font-family:'Work Sans', sans-serif; font-size:0.74rem; letter-spacing:0.05em; text-transform:uppercase; color:#5c4f3d;}
+  input, select{
+    font-family:'Newsreader', serif; font-size:1rem; padding:11px 12px; border:1px solid var(--line);
+    background:var(--parchment-lt); color:var(--charcoal); border-radius:1px;
+  }
+  input:focus, select:focus{outline:none; border-color:var(--madder);}
+  .total-row{
+    display:flex; justify-content:space-between; align-items:center; margin:22px 0 20px;
+    padding-top:18px; border-top:1px dashed var(--line);
+    font-family:'Work Sans', sans-serif;
+  }
+  .total-row .label{font-size:0.82rem; color:#5c4f3d; letter-spacing:0.03em;}
+  .total-row .value{font-family:'Fraunces', serif; font-size:1.7rem; color:var(--madder);}
+  .submit-btn{
+    width:100%; background:var(--madder); color:var(--parchment-lt); border:none; padding:16px;
+    font-family:'Work Sans', sans-serif; font-weight:600; letter-spacing:0.03em; font-size:0.9rem; cursor:pointer;
+    transition:background .2s ease;
+  }
+  .submit-btn:hover{background:var(--madder-dk);}
+  .note{font-family:'Work Sans', sans-serif; font-size:0.72rem; color:#7a6d59; margin-top:14px; line-height:1.6;}
+  .confirm{
+    display:none; background:var(--ink); color:var(--parchment-lt); padding:26px 28px; margin-top:20px;
+    font-family:'Work Sans', sans-serif; font-size:0.88rem; line-height:1.8;
+  }
+  .confirm.show{display:block;}
+  .confirm b{color:var(--brass);}
+
+  /* ===== Contact / Footer ===== */
+  footer{background:var(--charcoal); color:var(--parchment-lt);}
+  .foot-inner{padding:80px 0 40px; display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:50px;}
+  footer h3{color:var(--parchment-lt); font-size:1.5rem; margin-bottom:14px;}
+  footer p{color:rgba(247,242,228,0.65); font-size:0.92rem;}
+  .foot-col .eyebrow{color:var(--brass); margin-bottom:14px; display:block;}
+  .foot-col a{
+    display:block; color:rgba(247,242,228,0.85); text-decoration:none; font-family:'Work Sans', sans-serif;
+    font-size:0.9rem; margin-bottom:10px;
+  }
+  .foot-col a:hover{color:var(--brass);}
+  .foot-bottom{
+    border-top:1px solid rgba(247,242,228,0.12); padding:22px 0; text-align:center;
+    font-family:'Work Sans', sans-serif; font-size:0.72rem; letter-spacing:0.04em; color:rgba(247,242,228,0.5);
+  }
+
+  @media (max-width: 860px){
+    nav{padding:16px 20px;}
+    nav.scrolled{padding:12px 20px;}
+    .nav-toggle{display:block;}
+    .nav-links{
+      position:absolute; top:calc(100% + 8px); right:20px; left:20px; display:none; flex-direction:column; align-items:flex-start;
+      padding:16px; border-radius:18px; background:rgba(237,227,204,0.97); box-shadow:0 16px 40px rgba(18,24,40,0.16);
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a, .nav-links .btn-book{width:100%;}
+    .nav-links a:not(.btn-book):after{left:12px; bottom:6px;}
+    .hero-content{padding-bottom:60px;}
+    .hero-panel{max-width:100%;}
+    .about-grid, .ticket-grid, .foot-inner{grid-template-columns:1fr;}
+    .about-img-wrap img{height:340px;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:150px;}
+    .g-item, .g-item.wide{grid-column:span 2;}
+    .form-row{grid-template-columns:1fr;}
+    section{padding:70px 0;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="brand">MUKHI HOUSE<small>HYDERABAD · SINDH · EST. 1920</small></div>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#tour">Virtual Tour</a>
+    <a href="#visit">Visit</a>
+    <a href="#contact">Contact</a>
+    <a href="#visit" class="btn-book">Book a Ticket</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img data-image-role="hero" src="" alt="Mukhi House museum facade">
+  <div class="hero-content">
+    <div class="hero-panel">
+      <span class="eyebrow">A living museum in Hyderabad, Sindh</span>
+      <h1>Step into the story of a haveli that <em>outlasted</em> the century.</h1>
+      <p class="hero-sub">From carved balconies to sunlit courtyards, Mukhi House preserves the memory of a once-grand family home and welcomes visitors to experience its restored rooms.</p>
+      <div class="hero-ctas">
+        <a href="#visit" class="btn btn-primary">Reserve a Visit</a>
+        <a href="#tour" class="btn btn-ghost">Take the 360° Tour</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ajrak-strip"></div>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <span class="eyebrow">The House</span>
+      <h2>A family's home, a city's memory</h2>
+      <p>Mukhi House — also known as Mukhi Mahal — was built in 1920 and served as home to the Mukhi family until Partition compelled them to leave Hyderabad by 1957. In the decades that followed, the building passed between government bodies and endured misuse and civil unrest.</p>
+      <p class="pull">"A palatial home in Sindh with spacious marble courtyards, that appeared to be forever frozen in time."</p>
+      <p>In 2009, the Sindh Antiquities Department began restoration work, and the Mukhi family gave their blessing for the house to reopen as a public museum. Its carved wooden balconies, ceiling frescoes, and sandstone facade — reminiscent of Italian Renaissance detailing filtered through Sindhi craft — remain intact today.</p>
+      <div class="facts">
+        <div><div class="fact-num">1920</div><div class="fact-label">Year built</div></div>
+        <div><div class="fact-num">1957</div><div class="fact-label">Family vacated at Partition</div></div>
+        <div><div class="fact-num">2009</div><div class="fact-label">Restoration begins</div></div>
+        <div><div class="fact-num">11</div><div class="fact-label">Original bedrooms</div></div>
+      </div>
+    </div>
+    <div class="about-img-wrap">
+      <img data-image-role="about" src="" alt="Courtyard view of Mukhi House">
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Inside the Haveli</span>
+      <h2>Gallery</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item tall wide">
+        <img src="https://wpassets.graana.com/blog/wp-content/uploads/2023/09/Mukhi-House-.jpeg" alt="Mukhi House exterior view">
+        <div class="cap">Main façade of Mukhi House</div>
+      </div>
+      <div class="g-item">
+        <img src="https://i.dawn.com/medium/2025/04/67fa94539a96c.jpg" alt="Mukhi House interior detail">
+        <div class="cap">Historic interior detail</div>
+      </div>
+      <div class="g-item">
+        <img src="https://i.dawn.com/medium/2025/04/67fa945467701.jpg" alt="Mukhi House heritage view">
+        <div class="cap">Heritage architecture view</div>
+      </div>
+      <div class="g-item wide">
+        <img src="https://media-cdn.tripadvisor.com/media/photo-s/1a/c4/07/69/mukhi-house.jpg" alt="Mukhi House balcony and courtyard view">
+        <div class="cap">Balcony and courtyard view</div>
+      </div>
+      <div class="g-item">
+        <img src="https://wpassets.graana.com/blog/wp-content/uploads/2023/09/Mukhi-House-.jpeg" alt="Mukhi House additional exterior view">
+        <div class="cap">Exterior view from the heritage site</div>
+      </div>
+      <div class="g-item">
+        <img src="https://media-cdn.tripadvisor.com/media/photo-s/1a/c4/07/69/mukhi-house.jpg" alt="Mukhi House heritage façade view">
+        <div class="cap">Façade and historic detail</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tour" id="tour">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Can't visit in person?</span>
+      <h2>Walk the courtyards from anywhere</h2>
+    </div>
+    <div class="tour-frame">
+      <iframe src="https://www.sindhculture.gov.pk/VirtualTour/Museums/MukhiHouse/Publish/index.htm" title="Mukhi House 360 virtual tour" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <p class="tour-fallback">If the tour doesn't load above (some networks block embedded frames), <a href="https://www.sindhculture.gov.pk/VirtualTour/Museums/MukhiHouse/Publish/index.htm" target="_blank" rel="noopener">open it directly on the Sindh Culture Department site ↗</a></p>
+  </div>
+</section>
+
+<section class="tickets" id="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Plan Your Visit</span>
+      <h2>Book a ticket</h2>
+    </div>
+    <div class="ticket-grid">
+      <div class="price-card">
+        <span class="eyebrow">Entry</span>
+        <div class="amount">Rs 50<sup>/person</sup></div>
+        <div class="per">Pay at the counter on arrival</div>
+        <ul>
+          <li>Full access to all galleries</li>
+          <li>Courtyard &amp; balcony viewing</li>
+          <li>Free for children under 5</li>
+          <li>Guided tours available on request</li>
+        </ul>
+        <div class="hours">
+          <strong>Open</strong> Tue–Sun, 9:00 AM – 5:00 PM<br>
+          Closed Mondays &amp; public holidays
+        </div>
+      </div>
+
+      <div>
+        <form class="booking" id="bookingForm">
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Full name</label>
+              <input type="text" id="name" required placeholder="Your name">
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" required placeholder="03xx-xxxxxxx">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" required placeholder="you@email.com">
+            </div>
+            <div class="field">
+              <label for="date">Visit date</label>
+              <input type="date" id="date" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="visitorType">Visitor type</label>
+              <select id="visitorType" required>
+                <option value="local">Local visitor — Rs 50</option>
+                <option value="foreigner">Foreigner — Rs 1000</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="qty">Number of tickets</label>
+              <input type="number" id="qty" value="1" min="1" max="20" required>
+            </div>
+          </div>
+          <div class="total-row">
+            <span class="label">Total due at entry</span>
+            <span class="value" id="totalVal">Rs 50</span>
+          </div>
+          <button type="submit" class="submit-btn">Reserve my ticket</button>
+          <p class="note">This reserves your visit — payment is collected in person at Rs 50/ticket. There is no online payment gateway connected yet.</p>
+        </form>
+        <div class="confirm" id="confirmBox"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ajrak-strip"></div>
+
+<footer id="contact">
+  <div class="wrap foot-inner">
+    <div class="foot-col">
+      <h3>Mukhi House</h3>
+      <p>A restored 1920 haveli museum near Pucca Qila, Hyderabad, Sindh — open to visitors, researchers, and anyone chasing the city's memory.</p>
+    </div>
+    <div class="foot-col">
+      <span class="eyebrow">Contact</span>
+      <a href="mailto:mukhihouse8@gmail.com">mukhihouse8@gmail.com</a>
+      <a href="tel:0229210277">022‑9210277</a>
+    </div>
+    <div class="foot-col">
+      <span class="eyebrow">Explore</span>
+      <a href="#about">About the house</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#tour">Virtual tour</a>
+      <a href="#visit">Book a ticket</a>
+    </div>
+  </div>
+  <div class="foot-bottom">MUKHI HOUSE · HYDERABAD, SINDH · EST. 1920</div>
+</footer>
+
+<!-- EmailJS SDK: sign up at https://www.emailjs.com/ and replace the IDs below -->
+<script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+
+<script>
+  // Initialize EmailJS (replace with your user ID from EmailJS dashboard)
+  try{ emailjs.init('3Ed2omlD4Hd-w1gmd'); }catch(e){ /* will init when used */ }
+  const imageMap = {
+    hero: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.guhZblR46apPPKfmm5_gMwHaEX%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
+    about: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.QGWtlEANxRnPx2KNvI7O3wHaFj%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
+    'gallery-1': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.lBrTzTOqheKE7SmrvPRMgwHaKb%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
+    'gallery-2': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.y2L029OqNnk00N2T8XkTgQHaEy%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
+    'gallery-3': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.3248SFuUa5-K-2CK98ZJwAHaD4%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
+    'gallery-4': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.vhm3eX_9osdrolDhzKV6_QHaE8%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
+    'gallery-5': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.3X8ILddyP5n4wc8kNwRPhgHaEK%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
+    'gallery-6': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.pTAMxpP7koa3igeUeHywSAHaEL%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1'
+  };
+
+  document.querySelectorAll('img[data-image-role]').forEach((img) => {
+    const role = img.getAttribute('data-image-role');
+    if (imageMap[role]) {
+      img.src = imageMap[role];
+    }
+  });
+
+  // Override gallery images with the exact URLs provided by the user
+  // (also add a cache-busting query so the browser loads the newest files)
+  (function overrideGalleryImages(){
+    const galleryUrls = [
+      'https://wpassets.graana.com/blog/wp-content/uploads/2023/09/Mukhi-House-.jpeg',
+      'https://i.dawn.com/medium/2025/04/67fa94539a96c.jpg',
+      'https://i.dawn.com/medium/2025/04/67fa945467701.jpg',
+      'https://media-cdn.tripadvisor.com/media/photo-s/1a/c4/07/69/mukhi-house.jpg'
+    ];
+
+    const imgs = Array.from(document.querySelectorAll('.gallery-grid .g-item img'));
+    imgs.forEach((img, i) => {
+      const url = galleryUrls[i % galleryUrls.length];
+      img.src = url + '?v=' + Date.now();
+    });
+  })();
+
+  const nav = document.getElementById('nav');
+  const navLinks = document.querySelector('.nav-links');
+  const navToggle = document.querySelector('.nav-toggle');
+
+  function toggleNavState() {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  }
+
+  window.addEventListener('scroll', toggleNavState, { passive: true });
+  toggleNavState();
+
+  navToggle?.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const targetId = link.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+      const target = document.querySelector(targetId);
+      if (!target) return;
+
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        navToggle?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  const LOCAL_PRICE = 50;
+  const FOREIGN_PRICE = 1000;
+  const visitorType = document.getElementById('visitorType');
+  const qtyInput = document.getElementById('qty');
+  const totalVal = document.getElementById('totalVal');
+  function getUnitPrice(){
+    return visitorType.value === 'foreigner' ? FOREIGN_PRICE : LOCAL_PRICE;
+  }
+  function updateTotal(){
+    const q = Math.max(1, parseInt(qtyInput.value || '1', 10));
+    totalVal.textContent = 'Rs ' + (q * getUnitPrice());
+  }
+  visitorType.addEventListener('change', updateTotal);
+  qtyInput.addEventListener('input', updateTotal);
+
+  const form = document.getElementById('bookingForm');
+  const confirmBox = document.getElementById('confirmBox');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone') ? document.getElementById('phone').value.trim() : '';
+    const email = document.getElementById('email') ? document.getElementById('email').value.trim() : '';
+    const date = document.getElementById('date').value;
+    const visitorCategory = document.getElementById('visitorType').value;
+    const unitPrice = getUnitPrice();
+    const qty = Math.max(1, parseInt(qtyInput.value || '1', 10));
+    const total = qty * unitPrice;
+    const ref = 'MH-' + Date.now().toString().slice(-6);
+
+    // Template parameters for EmailJS template
+    const templateParams = {
+      booking_ref: ref,
+      name: name,
+      phone: phone,
+      email: email,
+      visit_date: date || 'not specified',
+      visitor_type: visitorCategory,
+      tickets: qty,
+      ticket_price: unitPrice,
+      amount: total
+    };
+
+    // Replace these with your EmailJS service & template IDs
+    const EMAILJS_SERVICE_ID = 'service_78uat4c';
+    // Replace the template ID below with the Template ID from your EmailJS dashboard.
+    // If you haven't created a template yet, create one and name it e.g. 'template_mukhi_house'
+    const EMAILJS_TEMPLATE_ID = 'template_vbrd44r';
+
+    // Try sending via EmailJS (client-side). If it fails, fallback to a mailto draft.
+    if (window.emailjs && EMAILJS_SERVICE_ID !== 'YOUR_SERVICE_ID') {
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+        .then(function(){
+          confirmBox.innerHTML =
+            'Booking sent. Reference <b>' + ref + '</b><br>' +
+            (name || 'Guest') + ' — ' + qty + ' ticket(s) for ' + (date || 'your selected date') + '<br>' +
+            'Amount due at entry: <b>Rs ' + total + '</b><br>' +
+            'We have received your reservation and will contact you if necessary.';
+          confirmBox.classList.add('show');
+          form.reset();
+          qtyInput.value = 1;
+          updateTotal();
+          confirmBox.scrollIntoView({behavior:'smooth', block:'center'});
+        }, function(err){
+          console.error('EmailJS error', err);
+          // fallback to mailto if EmailJS fails
+          fallbackToMailto();
+        });
+    } else {
+      // EmailJS not configured — fallback to mailto
+      fallbackToMailto();
+    }
+
+    function fallbackToMailto(){
+      const to = 'esportsnexus233@gmail.com';
+      const subject = encodeURIComponent('Mukhi House booking reservation ' + ref);
+      const bodyLines = [
+        'Booking reference: ' + ref,
+        'Name: ' + name,
+        'Phone: ' + phone,
+        'Email: ' + email,
+        'Visit date: ' + (date || 'not specified'),
+        'Visitor type: ' + (visitorCategory === 'foreigner' ? 'Foreigner' : 'Local'),
+        'Number of tickets: ' + qty,
+        'Ticket price (Rs): ' + unitPrice,
+        'Amount due (Rs): ' + total,
+        '',
+        'Please process this reservation.'
+      ];
+      const body = encodeURIComponent(bodyLines.join('\n'));
+      const mailto = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
+      window.location.href = mailto;
+
+      confirmBox.innerHTML =
+        'Booking prepared. Reference <b>' + ref + '</b><br>' +
+        (name || 'Guest') + ' — ' + qty + ' ticket(s) for ' + (date || 'your selected date') + '<br>' +
+        'Amount due at entry: <b>Rs ' + total + '</b><br>' +
+        'Email draft opened as a fallback — please send it to complete the reservation.';
+      confirmBox.classList.add('show');
+      form.reset();
+      qtyInput.value = 1;
+      updateTotal();
+      confirmBox.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  });
+</script>
+
+</body>
+</html>
