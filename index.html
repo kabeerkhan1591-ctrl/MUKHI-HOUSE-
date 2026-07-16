@@ -748,7 +748,7 @@
 
 <section class="hero" id="top">
   <div class="hero-media">
-    <video id="heroVideo" muted loop playsinline preload="auto" poster="">
+    <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="">
       <source src="haveli-hero.mp4" type="video/mp4">
     </video>
   </div>
@@ -1023,24 +1023,21 @@
     scrollLine.style.height = pct + '%';
   }, { passive:true });
 
-  // ---- hero video: begins playing once the user starts scrolling ----
+  // ---- hero video: relies on native autoplay (most reliable on mobile), with JS nudges as backup ----
   const heroVideo = document.getElementById('heroVideo');
   const heroSection = document.querySelector('.hero');
-  let videoStarted = false;
 
   function tryStartVideo(){
-    if (videoStarted) return;
-    videoStarted = true;
-    heroVideo.play().catch(()=>{ videoStarted = false; });
+    heroVideo.play().catch(()=>{ /* ignore: some browsers require a gesture, autoplay attribute already tried */ });
   }
+  tryStartVideo();
   window.addEventListener('scroll', tryStartVideo, { passive:true, once:true });
-  // fallback: also start after a short idle delay in case the visitor never scrolls
-  setTimeout(tryStartVideo, 2200);
+  window.addEventListener('touchstart', tryStartVideo, { passive:true, once:true });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) tryStartVideo(); });
 
   const heroObserver = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
-      if (!videoStarted) return;
-      if (entry.isIntersecting){ heroVideo.play().catch(()=>{}); }
+      if (entry.isIntersecting){ tryStartVideo(); }
       else { heroVideo.pause(); }
     });
   }, { threshold: 0.1 });
