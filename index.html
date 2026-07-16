@@ -3,678 +3,1122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mukhi House — Hyderabad, Sindh</title>
+<title>Mukhi House — A Living Museum in Hyderabad, Sindh</title>
+<meta name="description" content="A restored 1920 haveli in Hyderabad, Sindh — now a public museum of courtyards, carved balconies and family memory.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#121212;        /* deep black base */
-    --ink-2:#1d1d1d;
-    --parchment:#E8C79B;  /* warm skin-toned parchment */
-    --parchment-lt:#F7E7D0;
-    --madder:#8B4A2A;     /* rich earthy brown */
-    --madder-dk:#6F3A21;
-    --brass:#C79A57;      /* muted brass accent */
-    --charcoal:#0D0D0D;
-    --line: rgba(13,13,13,0.16);
+    --bg:#12131b;
+    --bg-alt:#181a26;
+    --panel:#1d2033;
+    --panel-2:#20233a;
+    --ink:#f2ecdd;
+    --muted:#a9a4a0;
+    --muted-2:#7d7a86;
+    --indigo:#2c3f73;
+    --indigo-soft:#3d5590;
+    --madder:#b5432b;
+    --madder-soft:#d3624a;
+    --gold:#c6a15b;
+    --gold-bright:#e6c98a;
+    --line:rgba(242,236,221,0.10);
+    --line-strong:rgba(198,161,91,0.35);
+    --shadow:0 30px 60px -20px rgba(0,0,0,0.55);
   }
+
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--parchment-lt);
-    color:var(--charcoal);
-    font-family:'Newsreader', serif;
-    font-size:17px;
-    line-height:1.65;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-weight:400;
+    line-height:1.6;
     overflow-x:hidden;
   }
-  h1,h2,h3,.display{
+
+  ::selection{ background:var(--gold); color:#181a26; }
+
+  img{ max-width:100%; display:block; }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--gold);
+    display:inline-block;
+  }
+
+  h1,h2,h3{
     font-family:'Fraunces', serif;
     font-weight:500;
     letter-spacing:-0.01em;
     color:var(--ink);
   }
-  .eyebrow{
-    font-family:'Work Sans', sans-serif;
-    font-size:0.72rem;
-    letter-spacing:0.22em;
-    text-transform:uppercase;
-    color:var(--madder);
-    font-weight:600;
-  }
-  a{color:inherit;}
-  img{display:block; max-width:100%;}
-  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  em{ font-style:italic; color:var(--gold-bright); font-weight:400;}
 
-  /* ===== Ajrak motif (signature element) ===== */
-  .ajrak-strip{
-    height:22px;
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 40px;
+  }
+
+  /* ---------- scroll progress line ---------- */
+  #scrollline{
+    position:fixed;
+    top:0; right:0;
+    width:3px; height:100%;
+    z-index:500;
+    background:transparent;
+  }
+  #scrollline i{
+    display:block;
     width:100%;
-    background:
-      repeating-linear-gradient(45deg, var(--brass) 0 6px, transparent 6px 12px) top/100% 11px no-repeat,
-      repeating-linear-gradient(-45deg, var(--madder) 0 6px, transparent 6px 12px) bottom/100% 11px no-repeat,
-      var(--ink);
+    height:0%;
+    background:linear-gradient(180deg,var(--gold), var(--madder));
+    transition:height 60ms linear;
   }
-  .ajrak-corner{
-    position:absolute; width:34px; height:34px; pointer-events:none;
-  }
-  .ajrak-corner svg{width:100%; height:100%;}
 
-  /* ===== Nav ===== */
-  nav{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:20px 40px;
-    background:linear-gradient(90deg, rgba(13,13,13,0.96) 0%, rgba(13,13,13,0.9) 60%, rgba(232,199,155,0.18) 100%);
-    border-bottom:1px solid rgba(232,199,155,0.18);
-    transition:background .35s ease, padding .35s ease, box-shadow .35s ease;
+  /* ---------- nav ---------- */
+  header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:400;
+    padding:26px 0;
+    transition:all .4s ease;
   }
-  nav.scrolled{
-    background:linear-gradient(90deg, rgba(232,199,155,0.98) 0%, rgba(247,231,208,0.96) 100%);
-    backdrop-filter:blur(10px);
-    padding:12px 40px;
-    box-shadow:0 1px 0 var(--line);
+  header.solid{
+    padding:16px 0;
+    background:rgba(18,19,27,0.88);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .navwrap{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
   }
   .brand{
-    font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;
-    color:var(--parchment-lt); letter-spacing:0.01em;
-    display:flex; flex-direction:column; line-height:1.1;
+    display:flex;
+    align-items:center;
+    gap:12px;
   }
-  nav.scrolled .brand{color:var(--ink);}
-  .brand small{
-    font-family:'Work Sans', sans-serif; font-size:0.6rem; letter-spacing:0.2em;
-    color:var(--brass); font-weight:500; margin-top:3px;
+  .brand svg{ width:30px; height:30px; flex-shrink:0; }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.15; }
+  .brand-text b{
+    font-family:'Fraunces', serif;
+    font-size:1.05rem;
+    letter-spacing:0.03em;
+    font-weight:500;
   }
-  .nav-links{
-    display:flex; gap:8px; align-items:center; font-family:'Work Sans', sans-serif; font-size:0.82rem; letter-spacing:0.04em;
-    padding:8px; border-radius:999px; background:rgba(232,199,155,0.12); border:1px solid rgba(232,199,155,0.18);
-    backdrop-filter:blur(8px);
+  .brand-text span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.62rem;
+    letter-spacing:0.18em;
+    color:var(--muted);
+    text-transform:uppercase;
   }
-  nav.scrolled .nav-links{background:rgba(13,13,13,0.06); border-color:rgba(13,13,13,0.12);}
-  .nav-links a{
-    color:var(--parchment-lt); text-decoration:none; opacity:0.9; position:relative; padding:8px 12px; border-radius:999px;
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:36px;
   }
-  nav.scrolled .nav-links a{color:var(--ink);}
-  .nav-links a:not(.btn-book):after{
-    content:""; position:absolute; left:12px; bottom:6px; width:0; height:1px; background:var(--madder);
-    transition:width .25s ease;
+  nav a{
+    font-size:0.86rem;
+    color:var(--muted);
+    letter-spacing:0.01em;
+    position:relative;
+    padding-bottom:4px;
+    transition:color .25s ease;
   }
-  .nav-links a:not(.btn-book):hover{background:rgba(255,255,255,0.08);}
-  nav.scrolled .nav-links a:not(.btn-book):hover{background:rgba(162,62,46,0.08);}
-  .nav-links a:not(.btn-book):hover:after{width:calc(100% - 24px);}
-  .btn-book{
-    background:var(--madder); color:var(--parchment-lt) !important; padding:9px 18px;
-    border-radius:999px; text-decoration:none; font-weight:600; opacity:1 !important;
-    border:1px solid var(--madder); box-shadow:0 10px 24px rgba(162,62,46,0.24);
+  nav a:hover{ color:var(--ink); }
+  nav a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:0; height:1px;
+    background:var(--gold);
+    transition:width .3s ease;
   }
-  .btn-book:hover{background:var(--madder-dk); border-color:var(--madder-dk); transform:translateY(-1px);}
-  .nav-toggle{display:none; background:transparent; border:0; color:var(--parchment-lt); padding:6px; cursor:pointer;}
-  nav.scrolled .nav-toggle{color:var(--ink);}
-  .nav-toggle span{display:block; width:22px; height:2px; background:currentColor; margin:4px 0; border-radius:10px;}
+  nav a:hover::after{ width:100%; }
 
-  /* ===== Hero ===== */
-  .hero{
-    position:relative; height:100vh; min-height:640px;
-    display:flex; align-items:flex-start; /* keep hero panel below the top nav */
-    padding-top:32px;
-    background:var(--ink);
-  }
-  .hero img{
-    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%;
-    opacity:0.62;
-  }
-  .hero:before{
-    content:""; position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(13,13,13,0.2) 0%, rgba(13,13,13,0.48) 55%, rgba(13,13,13,0.92) 100%);
-  }
-  .hero-content{position:relative; z-index:2; padding:calc(40px + 2vw) clamp(20px,5vw,40px) clamp(40px,8vw,80px); width:100%; display:flex; justify-content:flex-start;}
-  .hero-panel{
-    max-width:760px;  padding:clamp(28px,3vw,40px); border-radius:24px; background:rgba(7,10,18,0.46);
-    border:1px solid rgba(247,242,228,0.16); box-shadow:0 24px 60px rgba(0,0,0,0.28); backdrop-filter:blur(10px);
-  }
-  .hero-content .eyebrow{color:var(--brass); margin-bottom:14px; display:inline-block;}
-  .hero-content h1{
-    color:var(--parchment-lt); font-size:clamp(2.6rem, 6vw, 5rem);
-    max-width:760px; margin:0 0 18px; font-weight:500; line-height:1.02;
-  }
-  .hero-content h1 em{font-style:italic; color:var(--brass); font-weight:400;}
-  .hero-sub{
-    color:rgba(247,242,228,0.9); max-width:620px; font-size:1.05rem; margin-bottom:30px; line-height:1.75;
-  }
-  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .navlinks{ display:flex; align-items:center; gap:40px; }
+
   .btn{
-    font-family:'Work Sans', sans-serif; font-size:0.85rem; letter-spacing:0.03em; font-weight:600;
-    padding:15px 28px; text-decoration:none; border-radius:999px; display:inline-block; transition:all .2s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding:13px 24px;
+    border-radius:2px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:all .3s ease;
+    white-space:nowrap;
   }
-  .btn:hover{transform:translateY(-1px);}
-  .btn-primary{background:var(--madder); color:var(--parchment-lt); border:1px solid var(--madder);}
-  .btn-primary:hover{background:var(--madder-dk); border-color:var(--madder-dk);}
-  .btn-ghost{border:1px solid rgba(247,242,228,0.55); color:var(--parchment-lt);}
-  .btn-ghost:hover{background:rgba(247,242,228,0.12); border-color:var(--parchment-lt);}
-
-  /* ===== Section shared ===== */
-  section{padding:110px 0;}
-  .section-head{max-width:640px; margin-bottom:56px;}
-  .section-head h2{font-size:clamp(2rem, 3.4vw, 2.8rem); margin-top:10px;}
-
-  /* ===== About ===== */
-  .about{background:var(--parchment-lt);}
-  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
-  .about-copy p{margin-bottom:18px; color:#3a3025;}
-  .about-copy .pull{
-    font-family:'Fraunces', serif; font-style:italic; font-size:1.3rem; color:var(--ink);
-    border-left:2px solid var(--madder); padding-left:20px; margin:28px 0;
+  .btn-solid{
+    background:linear-gradient(135deg,var(--gold-bright),var(--gold));
+    color:#1a1710;
+    font-weight:500;
   }
-  .about-img-wrap{position:relative; padding:14px;}
-  .about-img-wrap img{width:100%; height:520px; object-fit:cover;}
-  .facts{
-    display:grid; grid-template-columns:1fr 1fr; gap:24px 32px; margin-top:36px;
-    font-family:'Work Sans', sans-serif;
+  .btn-solid:hover{ box-shadow:0 8px 30px -6px rgba(198,161,91,0.55); transform:translateY(-1px); }
+  .btn-ghost{
+    border-color:var(--line-strong);
+    color:var(--ink);
   }
-  .fact-num{font-family:'Fraunces', serif; font-size:1.7rem; color:var(--madder); font-weight:500;}
-  .fact-label{font-size:0.78rem; letter-spacing:0.05em; color:#5c4f3d; margin-top:2px;}
+  .btn-ghost:hover{ border-color:var(--gold); background:rgba(198,161,91,0.08); }
 
-  /* ===== Gallery ===== */
-  .gallery{background:var(--ink); color:var(--parchment-lt);}
-  .gallery .section-head h2{color:var(--parchment-lt);}
-  .gallery .eyebrow{color:var(--brass);}
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    height:100vh;
+    min-height:640px;
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+    background:#0c0d13;
+  }
+  .hero-media{
+    position:absolute;
+    inset:0;
+    z-index:1;
+  }
+  .hero-media video, .hero-media .poster{
+    position:absolute;
+    inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:saturate(0.92) contrast(1.05);
+  }
+  .hero-media::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, rgba(12,13,19,0.55) 0%, rgba(12,13,19,0.35) 35%, rgba(12,13,19,0.55) 68%, rgba(12,13,19,0.96) 100%),
+      linear-gradient(90deg, rgba(12,13,19,0.55) 0%, rgba(12,13,19,0) 40%);
+    z-index:2;
+  }
+  .hero-media::after{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse at 20% 100%, rgba(181,67,43,0.18), transparent 55%);
+    z-index:2;
+  }
+
+  .hero-content{
+    position:relative;
+    z-index:3;
+    width:100%;
+    padding-bottom:100px;
+  }
+  .hero-inner{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 40px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5.6vw, 5rem);
+    line-height:1.04;
+    max-width:14ch;
+    margin:22px 0 26px;
+  }
+  .hero p{
+    max-width:44ch;
+    color:var(--muted);
+    font-size:1.05rem;
+    margin-bottom:38px;
+  }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+
+  .seal{
+    position:absolute;
+    top:120px; right:60px;
+    z-index:3;
+    width:118px; height:118px;
+    animation:spin 34s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .seal-static{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .scrollcue{
+    position:absolute;
+    bottom:36px; left:40px;
+    z-index:3;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.2em;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
+  .scrollcue .stem{
+    width:1px; height:46px;
+    background:linear-gradient(180deg, var(--gold), transparent);
+    position:relative;
+    overflow:hidden;
+  }
+  .scrollcue .stem i{
+    position:absolute; left:0; top:-46px;
+    width:100%; height:46px;
+    background:var(--gold-bright);
+    animation:drip 2.6s ease-in-out infinite;
+  }
+  @keyframes drip{
+    0%{ top:-46px; }
+    60%{ top:46px; }
+    100%{ top:46px; }
+  }
+
+  /* ---------- section shells ---------- */
+  section{ position:relative; }
+  .pad{ padding:130px 0; }
+  .pad-sm{ padding:80px 0; }
+  .alt{ background:var(--bg-alt); }
+
+  .divider{
+    width:100%;
+    height:32px;
+    display:block;
+    opacity:0.55;
+  }
+  .divider path{
+    stroke:var(--gold);
+    stroke-width:1;
+    fill:none;
+    stroke-dasharray:900;
+    stroke-dashoffset:900;
+    transition:stroke-dashoffset 1.6s cubic-bezier(.16,.84,.44,1);
+  }
+  .divider.drawn path{ stroke-dashoffset:0; }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .9s cubic-bezier(.16,.84,.44,1), transform .9s cubic-bezier(.16,.84,.44,1);
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- stats ---------- */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--line);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .stat{
+    padding:42px 34px;
+    border-right:1px solid var(--line);
+    position:relative;
+  }
+  .stat:last-child{ border-right:none; }
+  .stat .num{
+    font-family:'Fraunces', serif;
+    font-size:2.6rem;
+    font-weight:400;
+    color:var(--gold-bright);
+    display:block;
+  }
+  .stat .lbl{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:8px;
+    display:block;
+  }
+
+  /* ---------- about ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:80px;
+    align-items:start;
+  }
+  .frame{
+    position:relative;
+    border:1px solid var(--line-strong);
+    padding:14px;
+    border-radius:2px;
+  }
+  .frame img{ border-radius:1px; }
+  .frame-cap{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.1em;
+    color:var(--muted);
+    margin-top:14px;
+    text-transform:uppercase;
+  }
+  .about-copy h2{
+    font-size:clamp(1.9rem,3vw,2.6rem);
+    margin-bottom:26px;
+    max-width:16ch;
+  }
+  .about-copy p{
+    color:var(--muted);
+    margin-bottom:20px;
+    max-width:56ch;
+  }
+  blockquote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.5rem;
+    color:var(--gold-bright);
+    line-height:1.45;
+    border-left:2px solid var(--madder);
+    padding-left:26px;
+    margin:34px 0;
+    max-width:38ch;
+  }
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    margin-top:38px;
+    border-top:1px solid var(--line);
+  }
+  .tl-row{
+    display:flex;
+    gap:26px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    align-items:baseline;
+  }
+  .tl-row .yr{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--gold);
+    font-size:0.82rem;
+    width:64px;
+    flex-shrink:0;
+  }
+  .tl-row .desc{ color:var(--muted); font-size:0.92rem; }
+
+  /* ---------- gallery ---------- */
+  .sec-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:52px;
+    gap:30px;
+    flex-wrap:wrap;
+  }
+  .sec-head h2{ font-size:clamp(1.9rem,3vw,2.6rem); margin-top:18px; max-width:16ch; }
+  .sec-head p{ color:var(--muted); max-width:34ch; padding-bottom:6px; }
+
   .gallery-grid{
-    display:grid; grid-template-columns:repeat(6, 1fr); grid-auto-rows:120px; gap:14px;
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    grid-auto-rows:190px;
+    gap:14px;
   }
-  .g-item{position:relative; overflow:hidden; grid-column:span 2; grid-row:span 2;}
-  .g-item.wide{grid-column:span 3;}
-  .g-item.tall{grid-row:span 3;}
-  .g-item img{width:100%; height:100%; object-fit:cover; transition:transform .6s ease;}
-  .g-item:hover img{transform:scale(1.07);}
-  .g-item .cap{
-    position:absolute; left:0; right:0; bottom:0; padding:14px 16px 10px;
-    background:linear-gradient(0deg, rgba(30,42,74,0.9), transparent);
-    font-family:'Work Sans', sans-serif; font-size:0.74rem; letter-spacing:0.03em; color:var(--parchment-lt);
-    opacity:0; transform:translateY(6px); transition:all .3s ease;
+  .g-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:3px;
+    grid-column:span 2;
+    border:1px solid var(--line);
   }
-  .g-item:hover .cap{opacity:1; transform:translateY(0);}
+  .g-item.big{ grid-column:span 3; grid-row:span 2; }
+  .g-item img{
+    width:100%; height:100%;
+    object-fit:cover;
+    transition:transform .8s cubic-bezier(.16,.84,.44,1), filter .8s ease;
+    filter:saturate(0.85) brightness(0.92);
+  }
+  .g-item:hover img{ transform:scale(1.07); filter:saturate(1) brightness(1); }
+  .g-cap{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:18px 20px;
+    background:linear-gradient(0deg, rgba(12,13,19,0.92), transparent);
+    transform:translateY(12px);
+    opacity:0;
+    transition:all .4s ease;
+  }
+  .g-item:hover .g-cap{ transform:translateY(0); opacity:1; }
+  .g-cap span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.04em;
+    color:var(--ink);
+  }
 
-  /* ===== Virtual tour ===== */
-  .tour{background:var(--parchment);}
+  /* ---------- tour ---------- */
+  .tour-panel{
+    position:relative;
+    border:1px solid var(--line-strong);
+    border-radius:4px;
+    padding:10px;
+    background:var(--panel);
+    box-shadow:var(--shadow);
+  }
+  .tour-panel .bar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 12px;
+  }
+  .tour-panel .bar i{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--line-strong);
+  }
   .tour-frame{
-    position:relative; border:1px solid var(--line); background:var(--charcoal);
-    aspect-ratio:16/8.2; width:100%; overflow:hidden;
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    border-radius:2px;
+    overflow:hidden;
+    background:#0c0d13;
   }
-  .tour-frame iframe{width:100%; height:100%; border:0;}
+  .tour-frame iframe{ width:100%; height:100%; border:0; position:relative; z-index:1; }
+  .tour-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--muted);
+    margin-top:18px;
+  }
+  .tour-note a{ color:var(--gold); border-bottom:1px solid var(--line-strong); }
+
+  /* ---------- tour loading / fallback states ---------- */
+  .tour-loading{
+    position:absolute; inset:0;
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    background:var(--bg-alt);
+    transition:opacity .5s ease;
+  }
+  .tour-loading.hide{ opacity:0; pointer-events:none; }
+  .tour-spinner{
+    width:34px; height:34px;
+    border-radius:50%;
+    border:1px solid var(--line-strong);
+    border-top-color:var(--gold);
+    animation:tourspin 0.9s linear infinite;
+  }
+  @keyframes tourspin{ to{ transform:rotate(360deg); } }
+  .tour-loading span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
   .tour-fallback{
-    font-family:'Work Sans', sans-serif; font-size:0.82rem; color:#5c4f3d; margin-top:14px;
+    position:absolute; inset:0;
+    z-index:3;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    gap:18px;
+    padding:40px;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(181,67,43,0.14), transparent 55%),
+      var(--panel-2);
   }
-  .tour-fallback a{color:var(--madder); font-weight:600; text-decoration:none; border-bottom:1px solid var(--madder);}
+  .tour-fallback.show{ display:flex; }
+  .tour-fallback svg{ width:44px; height:44px; }
+  .tour-fallback h3{
+    font-size:1.3rem;
+    max-width:22ch;
+  }
+  .tour-fallback p{
+    color:var(--muted);
+    font-size:0.88rem;
+    max-width:36ch;
+  }
 
-  /* ===== Tickets ===== */
-  .tickets{background:var(--parchment-lt);}
-  .ticket-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px;}
-  .price-card{
-    background:var(--ink); color:var(--parchment-lt); padding:40px 34px; position:relative; align-self:start;
+  /* ---------- visit ---------- */
+  .visit-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:40px;
+    align-items:start;
   }
-  .price-card .eyebrow{color:var(--brass);}
-  .price-card .amount{font-family:'Fraunces', serif; font-size:3.4rem; margin:14px 0 4px; font-weight:500;}
-  .price-card .amount sup{font-size:1.3rem; top:-1.2em; color:var(--brass);}
-  .price-card .per{font-family:'Work Sans', sans-serif; font-size:0.78rem; color:rgba(247,242,228,0.65); letter-spacing:0.04em; margin-bottom:26px;}
-  .price-card ul{list-style:none; font-family:'Work Sans', sans-serif; font-size:0.86rem; line-height:2.1; color:rgba(247,242,228,0.9);}
-  .price-card li:before{content:"— "; color:var(--brass);}
-  .price-card .hours{
-    margin-top:26px; padding-top:22px; border-top:1px solid rgba(247,242,228,0.18);
-    font-family:'Work Sans', sans-serif; font-size:0.82rem; color:rgba(247,242,228,0.75);
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:40px;
   }
+  .price-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    border-bottom:1px solid var(--line);
+    padding-bottom:24px;
+    margin-bottom:24px;
+  }
+  .price-top .amount{
+    font-family:'Fraunces', serif;
+    font-size:2.2rem;
+    color:var(--gold-bright);
+  }
+  .price-top .amount small{ font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--muted); }
+  .feat-list{ list-style:none; margin:24px 0; display:flex; flex-direction:column; gap:14px; }
+  .feat-list li{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    color:var(--muted);
+    font-size:0.92rem;
+  }
+  .feat-list li::before{
+    content:"";
+    width:6px; height:6px;
+    background:var(--gold);
+    transform:rotate(45deg);
+    margin-top:7px;
+    flex-shrink:0;
+  }
+  .hours{
+    margin-top:26px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-size:0.88rem;
+    color:var(--muted);
+  }
+  .hours b{ color:var(--ink); font-weight:500; }
 
-  form.booking{background:var(--parchment); padding:38px; border:1px solid var(--line);}
-  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;}
-  .field{display:flex; flex-direction:column; gap:6px;}
-  .field.full{grid-column:1/-1;}
-  label{font-family:'Work Sans', sans-serif; font-size:0.74rem; letter-spacing:0.05em; text-transform:uppercase; color:#5c4f3d;}
+  form{ display:flex; flex-direction:column; gap:20px; }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.64rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:8px;
+    display:block;
+  }
   input, select{
-    font-family:'Newsreader', serif; font-size:1rem; padding:11px 12px; border:1px solid var(--line);
-    background:var(--parchment-lt); color:var(--charcoal); border-radius:1px;
+    width:100%;
+    background:var(--bg-alt);
+    border:1px solid var(--line);
+    color:var(--ink);
+    padding:13px 14px;
+    border-radius:2px;
+    font-family:'Inter', sans-serif;
+    font-size:0.92rem;
+    transition:border-color .25s ease, box-shadow .25s ease;
   }
-  input:focus, select:focus{outline:none; border-color:var(--madder);}
-  .total-row{
-    display:flex; justify-content:space-between; align-items:center; margin:22px 0 20px;
-    padding-top:18px; border-top:1px dashed var(--line);
-    font-family:'Work Sans', sans-serif;
+  input:focus, select:focus{
+    outline:none;
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(198,161,91,0.15);
   }
-  .total-row .label{font-size:0.82rem; color:#5c4f3d; letter-spacing:0.03em;}
-  .total-row .value{font-family:'Fraunces', serif; font-size:1.7rem; color:var(--madder);}
-  .submit-btn{
-    width:100%; background:var(--madder); color:var(--parchment-lt); border:none; padding:16px;
-    font-family:'Work Sans', sans-serif; font-weight:600; letter-spacing:0.03em; font-size:0.9rem; cursor:pointer;
-    transition:background .2s ease;
+  .form-total{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    margin-top:6px;
   }
-  .submit-btn:hover{background:var(--madder-dk);}
-  .note{font-family:'Work Sans', sans-serif; font-size:0.72rem; color:#7a6d59; margin-top:14px; line-height:1.6;}
-  .confirm{
-    display:none; background:var(--ink); color:var(--parchment-lt); padding:26px 28px; margin-top:20px;
-    font-family:'Work Sans', sans-serif; font-size:0.88rem; line-height:1.8;
+  .form-total .t{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; }
+  .form-total .amount{ font-family:'Fraunces', serif; font-size:1.4rem; color:var(--gold-bright); }
+  .form-fine{ font-size:0.78rem; color:var(--muted-2); margin-top:4px; }
+  .confirm-msg{
+    display:none;
+    padding:16px 18px;
+    border:1px solid var(--line-strong);
+    background:rgba(198,161,91,0.08);
+    color:var(--gold-bright);
+    font-size:0.86rem;
+    border-radius:2px;
   }
-  .confirm.show{display:block;}
-  .confirm b{color:var(--brass);}
 
-  /* ===== Contact / Footer ===== */
-  footer{background:var(--charcoal); color:var(--parchment-lt);}
-  .foot-inner{padding:80px 0 40px; display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:50px;}
-  footer h3{color:var(--parchment-lt); font-size:1.5rem; margin-bottom:14px;}
-  footer p{color:rgba(247,242,228,0.92); font-size:0.92rem;}
-  .foot-col .eyebrow{color:var(--brass); margin-bottom:14px; display:block;}
-  .foot-col a{
-    display:block; color:var(--parchment-lt); text-decoration:none; font-family:'Work Sans', sans-serif;
-    font-size:0.9rem; margin-bottom:10px; opacity:0.95;
+  /* ---------- footer ---------- */
+  footer{ background:#0c0d13; padding-top:90px; }
+  .foot-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr;
+    gap:60px;
+    padding-bottom:60px;
+    border-bottom:1px solid var(--line);
   }
-  .foot-col a:hover{color:var(--brass);}
+  .foot-brand p{ color:var(--muted); margin-top:18px; max-width:32ch; font-size:0.92rem; }
+  .foot-col h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:18px;
+  }
+  .foot-col ul{ list-style:none; display:flex; flex-direction:column; gap:12px; }
+  .foot-col a{ color:var(--muted); font-size:0.9rem; transition:color .25s ease; }
+  .foot-col a:hover{ color:var(--ink); }
   .foot-bottom{
-    border-top:1px solid rgba(247,242,228,0.12); padding:22px 0; text-align:center;
-    font-family:'Work Sans', sans-serif; font-size:0.72rem; letter-spacing:0.04em; color:rgba(247,242,228,0.5);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:28px 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    color:var(--muted-2);
+    text-transform:uppercase;
+  }
+  .ajrak-strip{
+    height:10px;
+    width:100%;
+    background-image:repeating-linear-gradient(135deg, var(--indigo) 0 8px, var(--madder) 8px 16px, var(--gold) 16px 24px, var(--indigo) 24px 32px);
+    opacity:0.85;
   }
 
-  @media (max-width: 860px){
-    nav{padding:16px 20px;}
-    nav.scrolled{padding:12px 20px;}
-    .nav-toggle{display:block;}
-    .nav-links{
-      position:absolute; top:calc(100% + 8px); right:20px; left:20px; display:none; flex-direction:column; align-items:flex-start;
-      padding:16px; border-radius:18px; background:rgba(237,227,204,0.97); box-shadow:0 16px 40px rgba(18,24,40,0.16);
-    }
-    .nav-links.open{display:flex;}
-    .nav-links a, .nav-links .btn-book{width:100%;}
-    .nav-links a:not(.btn-book):after{left:12px; bottom:6px;}
-    .hero-content{padding-bottom:60px;}
-    .hero-panel{max-width:100%;}
-    .about-grid, .ticket-grid, .foot-inner{grid-template-columns:1fr;}
-    .about-img-wrap img{height:340px;}
-    .gallery-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:150px;}
-    .g-item, .g-item.wide{grid-column:span 2;}
-    .form-row{grid-template-columns:1fr;}
-    section{padding:70px 0;}
-    .wrap{padding:0 20px;}
-    footer .foot-inner{padding-left:16px; padding-right:16px; grid-template-columns:1fr; gap:28px; align-items:start;}
-    .foot-col{word-break:break-word;}
-    .foot-col p, .foot-col a{overflow-wrap:anywhere; word-break:break-word;}
-    .foot-col a{font-size:0.95rem;}
-    footer h3{font-size:1.3rem;}
-    .foot-bottom{padding:18px 0; font-size:0.72rem;}
+  @media (max-width: 980px){
+    .wrap, .hero-inner, .navwrap{ padding-left:24px; padding-right:24px; }
+    nav, .navlinks .btn-ghost{ display:none; }
+    .about-grid, .visit-grid{ grid-template-columns:1fr; gap:44px; }
+    .stats{ grid-template-columns:repeat(2,1fr); }
+    .stat:nth-child(2){ border-right:none; }
+    .stat{ border-bottom:1px solid var(--line); }
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); grid-auto-rows:160px; }
+    .g-item.big{ grid-column:span 2; grid-row:span 1; }
+    .form-row{ grid-template-columns:1fr; }
+    .foot-grid{ grid-template-columns:1fr; gap:36px; }
+    .seal{ display:none; }
+    .pad{ padding:90px 0; }
   }
 </style>
 </head>
 <body>
 
-<nav id="nav">
-  <div class="brand">MUKHI HOUSE<small>HYDERABAD · SINDH · EST. 1920</small></div>
-  <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
-    <span></span><span></span><span></span>
-  </button>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#tour">Virtual Tour</a>
-    <a href="#visit">Visit</a>
-    <a href="#contact">Contact</a>
-    <a href="#visit" class="btn-book">Book a Ticket</a>
-  </div>
-</nav>
+<div id="scrollline"><i></i></div>
 
-<section class="hero">
-  <img data-image-role="hero" src="" alt="Mukhi House museum facade">
+<header id="siteheader">
+  <div class="navwrap">
+    <a href="#top" class="brand">
+      <svg viewBox="0 0 40 40" fill="none">
+        <rect x="1" y="1" width="38" height="38" stroke="#c6a15b" stroke-width="1"/>
+        <path d="M20 6 L30 20 L20 34 L10 20 Z" stroke="#c6a15b" stroke-width="1" fill="none"/>
+        <circle cx="20" cy="20" r="4" fill="#b5432b"/>
+      </svg>
+      <span class="brand-text">
+        <b>Mukhi House</b>
+        <span>Hyderabad · Sindh · Est. 1920</span>
+      </span>
+    </a>
+    <div class="navlinks">
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#tour">Virtual Tour</a></li>
+          <li><a href="#visit">Visit</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="#visit" class="btn btn-solid">Book a Ticket</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-media">
+    <video id="heroVideo" muted loop playsinline preload="auto" poster="">
+      <source src="assets/haveli-hero.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <svg class="seal" viewBox="0 0 200 200">
+    <defs>
+      <path id="sealpath" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
+    </defs>
+    <circle cx="100" cy="100" r="96" stroke="#c6a15b" stroke-width="0.75" fill="none" opacity="0.7"/>
+    <circle cx="100" cy="100" r="78" stroke="#c6a15b" stroke-width="0.75" fill="none" opacity="0.5"/>
+    <text font-family="IBM Plex Mono" font-size="9.2" fill="#e6c98a" letter-spacing="3">
+      <textPath href="#sealpath" startOffset="0%">MUKHI HOUSE · HYDERABAD · SINDH · </textPath>
+    </text>
+    <path d="M100 78 L118 100 L100 122 L82 100 Z" stroke="#b5432b" stroke-width="1.2" fill="none"/>
+    <text x="100" y="103" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#c6a15b">1920</text>
+  </svg>
+
   <div class="hero-content">
-    <div class="hero-panel">
+    <div class="hero-inner">
       <span class="eyebrow">A living museum in Hyderabad, Sindh</span>
       <h1>Step into the story of a haveli that <em>outlasted</em> the century.</h1>
-      <p class="hero-sub">From carved balconies to sunlit courtyards, Mukhi House preserves the memory of a once-grand family home and welcomes visitors to experience its restored rooms.</p>
+      <p>From carved balconies to sunlit courtyards, Mukhi House preserves the memory of a once-grand family home — restored, reopened, and waiting to be walked through.</p>
       <div class="hero-ctas">
-        <a href="#visit" class="btn btn-primary">Reserve a Visit</a>
+        <a href="#visit" class="btn btn-solid">Reserve a Visit</a>
         <a href="#tour" class="btn btn-ghost">Take the 360° Tour</a>
       </div>
     </div>
   </div>
+
+  <div class="scrollcue">
+    <div class="stem"><i></i></div>
+    <span>Scroll</span>
+  </div>
 </section>
 
-<div class="ajrak-strip"></div>
-
-<section class="about" id="about">
-  <div class="wrap about-grid">
-    <div class="about-copy">
-      <span class="eyebrow">The House</span>
-      <h2>A family's home, a city's memory</h2>
-      <p>Mukhi House — also known as Mukhi Mahal — was built in 1920 and served as home to the Mukhi family until Partition compelled them to leave Hyderabad by 1957. In the decades that followed, the building passed between government bodies and endured misuse and civil unrest.</p>
-      <p class="pull">"A palatial home in Sindh with spacious marble courtyards, that appeared to be forever frozen in time."</p>
-      <p>In 2009, the Sindh Antiquities Department began restoration work, and the Mukhi family gave their blessing for the house to reopen as a public museum. Its carved wooden balconies, ceiling frescoes, and sandstone facade — reminiscent of Italian Renaissance detailing filtered through Sindhi craft — remain intact today.</p>
-      <div class="facts">
-        <div><div class="fact-num">1920</div><div class="fact-label">Year built</div></div>
-        <div><div class="fact-num">1957</div><div class="fact-label">Family vacated at Partition</div></div>
-        <div><div class="fact-num">2009</div><div class="fact-label">Restoration begins</div></div>
-        <div><div class="fact-num">11</div><div class="fact-label">Original bedrooms</div></div>
-      </div>
+<section class="pad" id="about">
+  <div class="wrap">
+    <div class="stats reveal">
+      <div class="stat"><span class="num">1920</span><span class="lbl">Year built</span></div>
+      <div class="stat"><span class="num">1957</span><span class="lbl">Family vacated at Partition</span></div>
+      <div class="stat"><span class="num">2009</span><span class="lbl">Restoration begins</span></div>
+      <div class="stat"><span class="num">11</span><span class="lbl">Original bedrooms</span></div>
     </div>
-    <div class="about-img-wrap">
-      <img data-image-role="about" src="" alt="Courtyard view of Mukhi House">
+  </div>
+
+  <div class="wrap" style="margin-top:120px;">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="frame">
+          <img src="https://wpassets.graana.com/blog/wp-content/uploads/2023/09/Mukhi-House-.jpeg" alt="Mukhi House museum facade">
+        </div>
+        <span class="frame-cap">Main façade — restored sandstone, 2009</span>
+      </div>
+      <div class="about-copy reveal">
+        <span class="eyebrow">The house</span>
+        <h2 style="margin-top:18px;">A family's home, a city's memory</h2>
+        <p>Mukhi House — also known as Mukhi Mahal — was built in 1920 and served as home to the Mukhi family until Partition compelled them to leave Hyderabad by 1957. In the decades that followed, the building passed between government bodies and endured misuse and civil unrest.</p>
+        <blockquote>"A palatial home in Sindh with spacious marble courtyards, that appeared to be forever frozen in time."</blockquote>
+        <p>In 2009, the Sindh Antiquities Department began restoration work, and the Mukhi family gave their blessing for the house to reopen as a public museum. Its carved wooden balconies, ceiling frescoes, and sandstone facade — reminiscent of Italian Renaissance detailing filtered through Sindhi craft — remain intact today.</p>
+        <div class="timeline">
+          <div class="tl-row"><span class="yr">1920</span><span class="desc">The Mukhi family builds the haveli near Pucca Qila, Hyderabad.</span></div>
+          <div class="tl-row"><span class="yr">1957</span><span class="desc">The family leaves Hyderabad at Partition; the house passes to the state.</span></div>
+          <div class="tl-row"><span class="yr">2009</span><span class="desc">The Sindh Antiquities Department begins restoration, with the family's blessing.</span></div>
+          <div class="tl-row"><span class="yr">Today</span><span class="desc">Open to visitors, researchers, and anyone chasing the city's memory.</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="gallery" id="gallery">
+<svg class="divider" viewBox="0 0 1240 32" preserveAspectRatio="none"><path d="M0,16 L200,16 L215,4 L230,28 L245,16 L1240,16"/></svg>
+
+<section class="pad alt" id="gallery">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Inside the Haveli</span>
-      <h2>Gallery</h2>
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Inside the haveli</span>
+        <h2>Gallery</h2>
+      </div>
+      <p>Courtyards, carved wood and sandstone detail — six views from inside a house built to outlast its century.</p>
     </div>
-    <div class="gallery-grid">
-      <div class="g-item tall wide">
+
+    <div class="gallery-grid reveal">
+      <div class="g-item big">
         <img src="https://wpassets.graana.com/blog/wp-content/uploads/2023/09/Mukhi-House-.jpeg" alt="Mukhi House exterior view">
-        <div class="cap">Main façade of Mukhi House</div>
+        <div class="g-cap"><span>Main façade of Mukhi House</span></div>
       </div>
       <div class="g-item">
         <img src="https://i.dawn.com/medium/2025/04/67fa94539a96c.jpg" alt="Mukhi House interior detail">
-        <div class="cap">Historic interior detail</div>
+        <div class="g-cap"><span>Historic interior detail</span></div>
       </div>
       <div class="g-item">
         <img src="https://i.dawn.com/medium/2025/04/67fa945467701.jpg" alt="Mukhi House heritage view">
-        <div class="cap">Heritage architecture view</div>
+        <div class="g-cap"><span>Heritage architecture view</span></div>
       </div>
-      <div class="g-item wide">
+      <div class="g-item">
         <img src="https://media-cdn.tripadvisor.com/media/photo-s/1a/c4/07/69/mukhi-house.jpg" alt="Mukhi House balcony and courtyard view">
-        <div class="cap">Balcony and courtyard view</div>
+        <div class="g-cap"><span>Balcony and courtyard view</span></div>
       </div>
       <div class="g-item">
         <img src="https://wpassets.graana.com/blog/wp-content/uploads/2023/09/Mukhi-House-.jpeg" alt="Mukhi House additional exterior view">
-        <div class="cap">Exterior view from the heritage site</div>
-      </div>
-      <div class="g-item">
-        <img src="https://media-cdn.tripadvisor.com/media/photo-s/1a/c4/07/69/mukhi-house.jpg" alt="Mukhi House heritage façade view">
-        <div class="cap">Façade and historic detail</div>
+        <div class="g-cap"><span>Exterior view from the heritage site</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="tour" id="tour">
+<section class="pad" id="tour">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Can't visit in person?</span>
-      <h2>Walk the courtyards from anywhere</h2>
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Can't visit in person?</span>
+        <h2>Walk the courtyards from anywhere</h2>
+      </div>
+      <p>A full 360° pass through the restored rooms, courtyards and balconies — hosted by the Sindh Culture Department.</p>
     </div>
-    <div class="tour-frame">
-      <iframe src="https://www.sindhculture.gov.pk/VirtualTour/Museums/MukhiHouse/Publish/index.htm" title="Mukhi House 360 virtual tour" allowfullscreen loading="lazy"></iframe>
+
+    <div class="tour-panel reveal">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="tour-frame" id="tourFrame">
+        <iframe id="tourIframe" src="https://www.sindhculture.gov.pk/VirtualTour/Museums/MukhiHouse/Publish/index.htm" allowfullscreen title="Mukhi House Virtual Tour"></iframe>
+
+        <div class="tour-loading" id="tourLoading">
+          <div class="tour-spinner"></div>
+          <span>Loading the tour…</span>
+        </div>
+
+        <div class="tour-fallback" id="tourFallback">
+          <svg viewBox="0 0 40 40" fill="none">
+            <rect x="1" y="1" width="38" height="38" stroke="#c6a15b" stroke-width="1"/>
+            <path d="M20 6 L30 20 L20 34 L10 20 Z" stroke="#c6a15b" stroke-width="1" fill="none"/>
+            <circle cx="20" cy="20" r="4" fill="#b5432b"/>
+          </svg>
+          <h3>This tour opens on the Sindh Culture Department's site</h3>
+          <p>Their server doesn't allow the 360° tour to load inside another page, so it opens in its own tab instead.</p>
+          <a href="https://www.sindhculture.gov.pk/VirtualTour/Museums/MukhiHouse/Publish/index.htm" target="_blank" rel="noopener" class="btn btn-solid">Open the 360° Tour ↗</a>
+        </div>
+      </div>
     </div>
-    <p class="tour-fallback">If the tour doesn't load above (some networks block embedded frames), <a href="https://www.sindhculture.gov.pk/VirtualTour/Museums/MukhiHouse/Publish/index.htm" target="_blank" rel="noopener">open it directly on the Sindh Culture Department site ↗</a></p>
+    <p class="tour-note">Having trouble either way? <a href="https://www.sindhculture.gov.pk/VirtualTour/Museums/MukhiHouse/Publish/index.htm" target="_blank" rel="noopener">Open it directly on the Sindh Culture Department site ↗</a></p>
   </div>
 </section>
 
-<section class="tickets" id="visit">
+<svg class="divider" viewBox="0 0 1240 32" preserveAspectRatio="none"><path d="M0,16 L980,16 L995,4 L1010,28 L1025,16 L1240,16"/></svg>
+
+<section class="pad alt" id="visit">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Plan Your Visit</span>
-      <h2>Book a ticket</h2>
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Plan your visit</span>
+        <h2>Book a ticket</h2>
+      </div>
+      <p>Payment is collected at the counter — this form simply reserves your visit.</p>
     </div>
-    <div class="ticket-grid">
-      <div class="price-card">
-        <span class="eyebrow">Entry</span>
-        <div class="amount">Rs 50<sup>/person</sup></div>
-        <div class="per">Pay at the counter on arrival</div>
-        <ul>
+
+    <div class="visit-grid">
+      <div class="card reveal">
+        <div class="price-top">
+          <div>
+            <div class="amount">Rs 50<small> / person</small></div>
+          </div>
+          <span class="eyebrow" style="margin:0;">Local visitor</span>
+        </div>
+        <ul class="feat-list">
           <li>Full access to all galleries</li>
           <li>Courtyard &amp; balcony viewing</li>
           <li>Free for children under 5</li>
           <li>Guided tours available on request</li>
         </ul>
         <div class="hours">
-          <strong>Open</strong> Tue–Sun, 9:00 AM – 5:00 PM<br>
+          <b>Open</b> Tue – Sun, 9:00 AM – 5:00 PM<br>
           Closed Mondays &amp; public holidays
         </div>
       </div>
 
-      <div>
-        <form class="booking" id="bookingForm">
+      <div class="card reveal">
+        <form id="ticketForm">
           <div class="form-row">
-            <div class="field">
-              <label for="name">Full name</label>
-              <input type="text" id="name" required placeholder="Your name">
+            <div>
+              <label for="fname">Full name</label>
+              <input type="text" id="fname" placeholder="Your name" required>
             </div>
-            <div class="field">
-              <label for="phone">Phone</label>
-              <input type="tel" id="phone" required placeholder="03xx-xxxxxxx">
+            <div>
+              <label for="fphone">Phone</label>
+              <input type="tel" id="fphone" placeholder="03xx xxxxxxx" required>
             </div>
           </div>
           <div class="form-row">
-            <div class="field">
-              <label for="email">Email</label>
-              <input type="email" id="email" required placeholder="you@email.com">
+            <div>
+              <label for="femail">Email</label>
+              <input type="email" id="femail" placeholder="you@email.com">
             </div>
-            <div class="field">
-              <label for="date">Visit date</label>
-              <input type="date" id="date" required>
+            <div>
+              <label for="fdate">Visit date</label>
+              <input type="date" id="fdate" required>
             </div>
           </div>
           <div class="form-row">
-            <div class="field">
-              <label for="visitorType">Visitor type</label>
-              <select id="visitorType" required>
-                <option value="local">Local visitor — Rs 50</option>
-                <option value="foreigner">Foreigner — Rs 1000</option>
+            <div>
+              <label for="ftype">Visitor type</label>
+              <select id="ftype">
+                <option value="50">Local visitor — Rs 50</option>
+                <option value="1000">Foreigner — Rs 1000</option>
               </select>
             </div>
-            <div class="field full">
-              <label for="qty">Number of tickets</label>
-              <input type="number" id="qty" value="1" min="1" max="20" required>
+            <div>
+              <label for="fcount">Number of tickets</label>
+              <input type="number" id="fcount" min="1" value="1">
             </div>
           </div>
-          <div class="total-row">
-            <span class="label">Total due at entry</span>
-            <span class="value" id="totalVal">Rs 50</span>
+          <div class="form-total">
+            <span class="t">Total due at entry</span>
+            <span class="amount" id="totalAmt">Rs 50</span>
           </div>
-          <button type="submit" class="submit-btn">Reserve my ticket</button>
-          <p class="note">This reserves your visit — payment is collected in person at Rs 50/ticket. There is no online payment gateway connected yet.</p>
+          <button type="submit" class="btn btn-solid" style="justify-content:center; margin-top:6px;">Reserve My Ticket</button>
+          <p class="form-fine">This reserves your visit — payment is collected in person. There is no online payment gateway connected yet.</p>
+          <div class="confirm-msg" id="confirmMsg">Thank you — your visit is provisionally reserved. We'll confirm by phone or email shortly.</div>
         </form>
-        <div class="confirm" id="confirmBox"></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="ajrak-strip"></div>
-
 <footer id="contact">
-  <div class="wrap foot-inner">
-    <div class="foot-col">
-      <h3>Mukhi House</h3>
-      <p>A restored 1920 haveli museum near Pucca Qila, Hyderabad, Sindh — open to visitors, researchers, and anyone chasing the city's memory.</p>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand" style="display:inline-flex;">
+          <svg viewBox="0 0 40 40" fill="none" width="28" height="28">
+            <rect x="1" y="1" width="38" height="38" stroke="#c6a15b" stroke-width="1"/>
+            <path d="M20 6 L30 20 L20 34 L10 20 Z" stroke="#c6a15b" stroke-width="1" fill="none"/>
+            <circle cx="20" cy="20" r="4" fill="#b5432b"/>
+          </svg>
+          <span class="brand-text"><b>Mukhi House</b><span>Est. 1920</span></span>
+        </span>
+        <p>A restored 1920 haveli museum near Pucca Qila, Hyderabad, Sindh — open to visitors, researchers, and anyone chasing the city's memory.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About the house</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#tour">Virtual tour</a></li>
+          <li><a href="#visit">Book a ticket</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:mukhihouse8@gmail.com">mukhihouse8@gmail.com</a></li>
+          <li><a href="tel:0229210277">022‑9210277</a></li>
+          <li><span style="color:var(--muted); font-size:0.9rem;">Near Pucca Qila, Hyderabad, Sindh</span></li>
+        </ul>
+      </div>
     </div>
-    <div class="foot-col">
-      <span class="eyebrow">Contact</span>
-      <a href="mailto:mukhihouse8@gmail.com">mukhihouse8@gmail.com</a>
-      <a href="tel:0229210277">022‑9210277</a>
-    </div>
-    <div class="foot-col">
-      <span class="eyebrow">Explore</span>
-      <a href="#about">About the house</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#tour">Virtual tour</a>
-      <a href="#visit">Book a ticket</a>
+    <div class="foot-bottom">
+      <span>Mukhi House · Hyderabad, Sindh · Est. 1920</span>
+      <span>Restored 2009</span>
     </div>
   </div>
-  <div class="foot-bottom">MUKHI HOUSE · HYDERABAD, SINDH · EST. 1920</div>
+  <div class="ajrak-strip"></div>
 </footer>
 
-<!-- EmailJS SDK: sign up at https://www.emailjs.com/ and replace the IDs below -->
-<script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
-
 <script>
-  // Initialize EmailJS (replace with your user ID from EmailJS dashboard)
-  try{ emailjs.init('3Ed2omlD4Hd-w1gmd'); }catch(e){ /* will init when used */ }
-  const imageMap = {
-    hero: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.guhZblR46apPPKfmm5_gMwHaEX%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
-    about: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.QGWtlEANxRnPx2KNvI7O3wHaFj%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
-    'gallery-1': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.lBrTzTOqheKE7SmrvPRMgwHaKb%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
-    'gallery-2': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.y2L029OqNnk00N2T8XkTgQHaEy%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
-    'gallery-3': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.3248SFuUa5-K-2CK98ZJwAHaD4%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
-    'gallery-4': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.vhm3eX_9osdrolDhzKV6_QHaE8%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
-    'gallery-5': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.3X8ILddyP5n4wc8kNwRPhgHaEK%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1',
-    'gallery-6': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthfvnext.bing.com%2Fth%2Fid%2FOIP.pTAMxpP7koa3igeUeHywSAHaEL%3Fr%3D0%26cb%3Dthfvnextfalcon4%26pid%3DApi&f=1'
-  };
+  // ---- header solid on scroll ----
+  const header = document.getElementById('siteheader');
+  const scrollLine = document.querySelector('#scrollline i');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('solid', window.scrollY > 40);
+    const h = document.documentElement;
+    const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    scrollLine.style.height = pct + '%';
+  }, { passive:true });
 
-  document.querySelectorAll('img[data-image-role]').forEach((img) => {
-    const role = img.getAttribute('data-image-role');
-    if (imageMap[role]) {
-      img.src = imageMap[role];
-    }
-  });
+  // ---- hero video: begins playing once the user starts scrolling ----
+  const heroVideo = document.getElementById('heroVideo');
+  const heroSection = document.querySelector('.hero');
+  let videoStarted = false;
 
-  // Override gallery images with the exact URLs provided by the user
-  // (also add a cache-busting query so the browser loads the newest files)
-  (function overrideGalleryImages(){
-    const galleryUrls = [
-      'https://wpassets.graana.com/blog/wp-content/uploads/2023/09/Mukhi-House-.jpeg',
-      'https://i.dawn.com/medium/2025/04/67fa94539a96c.jpg',
-      'https://i.dawn.com/medium/2025/04/67fa945467701.jpg',
-      'https://media-cdn.tripadvisor.com/media/photo-s/1a/c4/07/69/mukhi-house.jpg'
-    ];
-
-    const imgs = Array.from(document.querySelectorAll('.gallery-grid .g-item img'));
-    imgs.forEach((img, i) => {
-      const url = galleryUrls[i % galleryUrls.length];
-      img.src = url + '?v=' + Date.now();
-    });
-  })();
-
-  const nav = document.getElementById('nav');
-  const navLinks = document.querySelector('.nav-links');
-  const navToggle = document.querySelector('.nav-toggle');
-
-  function toggleNavState() {
-    if (window.scrollY > 40) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
+  function tryStartVideo(){
+    if (videoStarted) return;
+    videoStarted = true;
+    heroVideo.play().catch(()=>{ videoStarted = false; });
   }
+  window.addEventListener('scroll', tryStartVideo, { passive:true, once:true });
+  // fallback: also start after a short idle delay in case the visitor never scrolls
+  setTimeout(tryStartVideo, 2200);
 
-  window.addEventListener('scroll', toggleNavState, { passive: true });
-  toggleNavState();
+  const heroObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if (!videoStarted) return;
+      if (entry.isIntersecting){ heroVideo.play().catch(()=>{}); }
+      else { heroVideo.pause(); }
+    });
+  }, { threshold: 0.1 });
+  heroObserver.observe(heroSection);
 
-  navToggle?.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-  });
-
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener('click', (event) => {
-      const targetId = link.getAttribute('href');
-      if (!targetId || targetId === '#') return;
-      const target = document.querySelector(targetId);
-      if (!target) return;
-
-      event.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (navLinks.classList.contains('open')) {
-        navLinks.classList.remove('open');
-        navToggle?.setAttribute('aria-expanded', 'false');
+  // ---- scroll reveal ----
+  const revealEls = document.querySelectorAll('.reveal, .divider');
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if (entry.isIntersecting){
+        entry.target.classList.add(entry.target.classList.contains('divider') ? 'drawn' : 'in');
+        revealObserver.unobserve(entry.target);
       }
     });
-  });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
 
-  const LOCAL_PRICE = 50;
-  const FOREIGN_PRICE = 1000;
-  const visitorType = document.getElementById('visitorType');
-  const qtyInput = document.getElementById('qty');
-  const totalVal = document.getElementById('totalVal');
-  function getUnitPrice(){
-    return visitorType.value === 'foreigner' ? FOREIGN_PRICE : LOCAL_PRICE;
-  }
+  // ---- virtual tour: detect blocked embeds and fall back automatically ----
+  (function(){
+    const tourIframe = document.getElementById('tourIframe');
+    const tourLoading = document.getElementById('tourLoading');
+    const tourFallback = document.getElementById('tourFallback');
+    let settled = false;
+
+    // Sites that block embedding (X-Frame-Options / CSP frame-ancestors) never
+    // fire a script-visible error — the browser just refuses to render inside
+    // the frame. We can't inspect cross-origin content, so we combine a short
+    // "did it load in time" window with an attempt to touch the frame's
+    // document (throws for blocked/cross-origin-restricted frames in some
+    // browsers, and never resolves in others — both cases mean "show fallback").
+    function showFallback(){
+      if (settled) return;
+      settled = true;
+      tourLoading.classList.add('hide');
+      tourFallback.classList.add('show');
+    }
+    function showSuccess(){
+      if (settled) return;
+      settled = true;
+      tourLoading.classList.add('hide');
+    }
+
+    tourIframe.addEventListener('load', function(){
+      // A same-origin-blocked frame still fires 'load' in most browsers,
+      // so a fast load alone isn't proof — but combined with the timeout
+      // below, a load this early is treated as a good sign.
+      setTimeout(showSuccess, 400);
+    });
+
+    // Only start the detection window once the tour panel is actually
+    // scrolled into view, so we're not racing a network request nobody has
+    // seen yet.
+    const tourObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if (entry.isIntersecting){
+          setTimeout(showFallback, 4000); // if nothing has resolved by 4s, assume it's blocked
+          tourObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+    tourObserver.observe(document.getElementById('tourFrame'));
+  })();
+
+  // ---- ticket form total + fake confirm ----
+  const ftype = document.getElementById('ftype');
+  const fcount = document.getElementById('fcount');
+  const totalAmt = document.getElementById('totalAmt');
   function updateTotal(){
-    const q = Math.max(1, parseInt(qtyInput.value || '1', 10));
-    totalVal.textContent = 'Rs ' + (q * getUnitPrice());
+    const price = parseInt(ftype.value, 10);
+    const count = Math.max(1, parseInt(fcount.value || '1', 10));
+    totalAmt.textContent = 'Rs ' + (price * count);
   }
-  visitorType.addEventListener('change', updateTotal);
-  qtyInput.addEventListener('input', updateTotal);
+  ftype.addEventListener('change', updateTotal);
+  fcount.addEventListener('input', updateTotal);
 
-  const form = document.getElementById('bookingForm');
-  const confirmBox = document.getElementById('confirmBox');
-  form.addEventListener('submit', function(e){
+  document.getElementById('ticketForm').addEventListener('submit', function(e){
     e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone') ? document.getElementById('phone').value.trim() : '';
-    const email = document.getElementById('email') ? document.getElementById('email').value.trim() : '';
-    const date = document.getElementById('date').value;
-    const visitorCategory = document.getElementById('visitorType').value;
-    const unitPrice = getUnitPrice();
-    const qty = Math.max(1, parseInt(qtyInput.value || '1', 10));
-    const total = qty * unitPrice;
-    const ref = 'MH-' + Date.now().toString().slice(-6);
-
-    // Template parameters for EmailJS template
-    const templateParams = {
-      booking_ref: ref,
-      name: name,
-      phone: phone,
-      email: email,
-      visit_date: date || 'not specified',
-      visitor_type: visitorCategory,
-      tickets: qty,
-      ticket_price: unitPrice,
-      amount: total
-    };
-
-    // Replace these with your EmailJS service & template IDs
-    const EMAILJS_SERVICE_ID = 'service_78uat4c';
-    // Replace the template ID below with the Template ID from your EmailJS dashboard.
-    // If you haven't created a template yet, create one and name it e.g. 'template_mukhi_house'
-    const EMAILJS_TEMPLATE_ID = 'template_vbrd44r';
-
-    // Try sending via EmailJS (client-side). If it fails, fallback to a mailto draft.
-    if (window.emailjs && EMAILJS_SERVICE_ID !== 'YOUR_SERVICE_ID') {
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-        .then(function(){
-          confirmBox.innerHTML =
-            'Booking sent. Reference <b>' + ref + '</b><br>' +
-            (name || 'Guest') + ' — ' + qty + ' ticket(s) for ' + (date || 'your selected date') + '<br>' +
-            'Amount due at entry: <b>Rs ' + total + '</b><br>' +
-            'We have received your reservation and will contact you if necessary.';
-          confirmBox.classList.add('show');
-          form.reset();
-          qtyInput.value = 1;
-          updateTotal();
-          confirmBox.scrollIntoView({behavior:'smooth', block:'center'});
-        }, function(err){
-          console.error('EmailJS error', err);
-          // fallback to mailto if EmailJS fails
-          fallbackToMailto();
-        });
-    } else {
-      // EmailJS not configured — fallback to mailto
-      fallbackToMailto();
-    }
-
-    function fallbackToMailto(){
-      const to = 'esportsnexus233@gmail.com';
-      const subject = encodeURIComponent('Mukhi House booking reservation ' + ref);
-      const bodyLines = [
-        'Booking reference: ' + ref,
-        'Name: ' + name,
-        'Phone: ' + phone,
-        'Email: ' + email,
-        'Visit date: ' + (date || 'not specified'),
-        'Visitor type: ' + (visitorCategory === 'foreigner' ? 'Foreigner' : 'Local'),
-        'Number of tickets: ' + qty,
-        'Ticket price (Rs): ' + unitPrice,
-        'Amount due (Rs): ' + total,
-        '',
-        'Please process this reservation.'
-      ];
-      const body = encodeURIComponent(bodyLines.join('\n'));
-      const mailto = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
-      window.location.href = mailto;
-
-      confirmBox.innerHTML =
-        'Booking prepared. Reference <b>' + ref + '</b><br>' +
-        (name || 'Guest') + ' — ' + qty + ' ticket(s) for ' + (date || 'your selected date') + '<br>' +
-        'Amount due at entry: <b>Rs ' + total + '</b><br>' +
-        'Email draft opened as a fallback — please send it to complete the reservation.';
-      confirmBox.classList.add('show');
-      form.reset();
-      qtyInput.value = 1;
-      updateTotal();
-      confirmBox.scrollIntoView({behavior:'smooth', block:'center'});
-    }
+    document.getElementById('confirmMsg').style.display = 'block';
   });
 </script>
 
